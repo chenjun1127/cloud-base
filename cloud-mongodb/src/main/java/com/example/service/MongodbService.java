@@ -107,7 +107,7 @@ public class MongodbService {
      */
     public List<User> findByLikes(String search) {
         Query query = new Query();
-        //criteria.where("name").regex(search);
+        // criteria.where("name").regex(search);
         Pattern pattern = Pattern.compile("^.*" + search + ".*$", Pattern.CASE_INSENSITIVE);
         Criteria.where("name").regex(pattern);
         return mongoTemplate.findAllAndRemove(query, User.class);
