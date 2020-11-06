@@ -11,6 +11,7 @@
         <module>cloud-snowflake</module>
         <module>cloud-redis</module>
         <module>cloud-base-commons</module>
+        <module>cloud-mongodb</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

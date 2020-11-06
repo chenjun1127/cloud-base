@@ -1,0 +1,12 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: cloud-mongodb
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@119.29.165.98:27017/?authSource=admin
+      database: cloud_base_test
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
