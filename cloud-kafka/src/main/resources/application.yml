@@ -1,0 +1,26 @@
+server:
+  port: 7003
+
+spring:
+  application:
+    name: cloud-kafka
+  kafka:
+    bootstrap-servers: 192.168.0.175:9092
+    producer: # producer 生产者
+      retries: 0 # 重试次数
+      acks: 1 # 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      batch-size: 16384 # 批量大小
+      buffer-memory: 33554432 # 生产端缓冲区大小
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer: # consumer消费者
+      group-id: test-consumer-group # 默认的消费组ID
+      enable-auto-commit: true # 是否自动提交offset
+      auto-commit-interval: 100 # 提交offset延时(接收到消息后多久提交offset)
+      auto-offset-reset: latest
+      # 当kafka中没有初始offset或offset超出范围时将自动重置offset;
+      # earliest:重置为分区中最小的offset;
+      # latest:重置为分区中最新的offset(消费分区中新产生的数据);
+      # none:只要有一个分区不存在已提交的offset,就抛出异常;
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
