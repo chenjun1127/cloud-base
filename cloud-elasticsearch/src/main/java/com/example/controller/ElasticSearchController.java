@@ -63,7 +63,9 @@ public class ElasticSearchController {
     public List<Content> search(@RequestParam(defaultValue = "1", value = "pageNo") Integer pageNo, @RequestParam(defaultValue = "10", value = "pageSize") Integer pageSize, String keyword) throws IOException {
         return elasticSearchService.search(pageNo, pageSize, keyword, Content.class);
     }
-
+    /*
+     * 查询所有
+     */
     @GetMapping("/searchAll")
     public Page<Content> searchAll(@RequestParam(defaultValue = "1", value = "pageNo") Integer pageNo, @RequestParam(defaultValue = "10", value = "pageSize") Integer pageSize) throws IOException {
         return elasticSearchService.searchAll(pageNo, pageSize, Content.class);
