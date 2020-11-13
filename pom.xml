@@ -13,6 +13,7 @@
         <module>cloud-base-commons</module>
         <module>cloud-mongodb</module>
         <module>cloud-kafka</module>
+        <module>cloud-elasticsearch</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
