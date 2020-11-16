@@ -41,8 +41,7 @@ public class YamlPropertySourceFactory extends DefaultPropertySourceFactory {
 ```
 @PropertySource(value = "classpath:application-rocketmq.yml", factory = YamlPropertySourceFactory.class)
 ```
-3、Rocketmq-Console 图形化管理控制台
-克隆项目到本地，
+3、Rocketmq-Console 图形化管理控制台，克隆项目到本地
 ```
 git clone https://github.com/apache/rocketmq-externals.git
 ```
