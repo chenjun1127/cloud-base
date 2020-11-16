@@ -8,12 +8,45 @@
     <version>4.7.1</version>
 </dependency>
 ```
-2、添加yml文件配置，注意：默认@PropertySource只可加载自定义的xx.properties，如果要加载yml文件，需要添加一个新的YamlPropertySourceFactory。用法见下面：
+2、添加yml文件配置，注意：默认@PropertySource只可加载自定义的xx.properties，如果要加载yml文件，需要添加一个新的YamlPropertySourceFactory。
+```java
+public class YamlPropertySourceFactory extends DefaultPropertySourceFactory {
+
+    @Override
+    public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
+        String sourceName = name != null ? name : resource.getResource().getFilename();
+        if (!resource.getResource().exists()) {
+            assert sourceName != null;
+            return new PropertiesPropertySource(sourceName, new Properties());
+        } else {
+            assert sourceName != null;
+            if (sourceName.endsWith(".yml") || sourceName.endsWith(".yaml")) {
+                Properties propertiesFromYaml = loadYml(resource);
+                return new PropertiesPropertySource(sourceName, propertiesFromYaml);
+            } else {
+                return super.createPropertySource(name, resource);
+            }
+        }
+    }
+
+    private Properties loadYml(EncodedResource resource) throws IOException {
+        YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
+        factory.setResources(resource.getResource());
+        factory.afterPropertiesSet();
+        return factory.getObject();
+    }
+}
+```
+用法见下面：
 ```
 @PropertySource(value = "classpath:application-rocketmq.yml", factory = YamlPropertySourceFactory.class)
 ```
 3、Rocketmq-Console 图形化管理控制台
-克隆项目到本地：git clone https://github.com/apache/rocketmq-externals.git，进入rocketmq-console文件夹，并修改相关配置文件：
+克隆项目到本地，
+```
+git clone https://github.com/apache/rocketmq-externals.git
+```
+进入rocketmq-console文件夹，并修改相关配置文件：
 ```
 server.address=0.0.0.0
 server.port=8080
