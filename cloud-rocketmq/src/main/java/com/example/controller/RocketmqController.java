@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.util.YamlPropertySourceFactory;
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -27,6 +28,7 @@ import javax.annotation.Resource;
 @PropertySource(value = "classpath:application-rocketmq.yml", factory = YamlPropertySourceFactory.class)
 public class RocketmqController {
     public static final Logger logger = LoggerFactory.getLogger(RocketmqController.class);
+
     @Value("${rocket.topic}")
     public String rocketTopic;
     @Value("${rocket.tag}")
