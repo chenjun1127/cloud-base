@@ -61,5 +61,4 @@ public class SnowFlakeService {
         map.put("list", list);
         return map;
     }
-
 }
