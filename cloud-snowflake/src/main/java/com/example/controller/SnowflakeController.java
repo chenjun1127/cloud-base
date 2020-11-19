@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @Description:
@@ -16,8 +18,9 @@ import java.util.List;
 public class SnowflakeController {
     @Resource
     private SnowFlakeService snowFlakeService;
+
     @GetMapping("/snowflake")
-    public List<Long> index(){
+    public Map<String, Object> getSnowflake() throws ExecutionException, InterruptedException {
         return snowFlakeService.getIdBySnowFlake();
     }
 }
