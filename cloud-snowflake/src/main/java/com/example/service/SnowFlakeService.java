@@ -21,7 +21,7 @@ public class SnowFlakeService {
     private IdGeneratorSnowflake idGeneratorSnowflake;
 
     /**
-     * 线程程处理20个请求；
+     * 线程池处理20个请求；
      */
 
     public Map<String, Object> getIdBySnowFlake() throws ExecutionException, InterruptedException {
